@@ -1,6 +1,6 @@
-# Article Evaluater
+# Travel Application
 
-Evaluate a News Article using Neural Language Processing API Aylien. Simply paste a URL of a news article into the field and hit submit. The results will show below whether it is positive/negative and objective/subjective along with their confidence level.
+The travel app includes a simple form where you enter the location you are traveling to and the date you are leaving. If the trip is within a week, you will get the current weather forecast. If the trip is in the future, you will get a predicted forecast. It uses the Weatherbit API for the forecasts and Geonames API for coordinates as the Weatherbit will only accept coordinates. It then uses Pixabay API to provide an image of the location entered. 
 
 ## Installation
 
@@ -12,12 +12,10 @@ npm install
 
 ## Usage
 
-You will need two seperate terminals, one to run server, one to run API
+You
 
 ```bash
 npm run start
-npm run build-dev # For development
-npm run build-prod # For production
 ```
 
 ## Contributing
