@@ -1,0 +1,55 @@
+<!doctype html><html lang="en" dir="ltr"><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;400;700;900&display=swap" rel="stylesheet"><link rel="apple-touch-icon" sizes="180x180" href="src/client/img/favicon/android-chrome-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="src/client/img/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="src/client/img/favicon/favicon-16x16.png"><title>Trip Reminder</title><link href="main.css" rel="stylesheet"></head><body><div class="headline-main">Trip Reminder</div><div class="create-button">&#x2b; Create a Trip</div><form class="new-trip-form" onsubmit="return Client.handleSubmit(event)"><div class="new-trip-close">&#x2b;</div><label>Destination City</label> <input name="city" id="cityName" placeholder="Enter name of City" required><br><label>Date of Departure</label> <input type="date" name="leaveDay" id="leaveDay" required><br><label>Date of Return</label> <input type="date" name="returnDay" id="returnDay" required><br><input type="submit" id="submit" name="" value="SUBMIT" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)"></form><div id="trip-section"></div><script>let picPositionArray = [];
+
+            // Retrieve API information
+            const getAPI = async (url= '') => {
+                const request = await fetch(url);
+                try {
+                    const apiData = await request.json();
+                    return apiData;
+                } catch (error) {
+                    console.log('Error', error);
+                }
+            }
+
+            // Set up api list so we can retrieve from path
+            let apiList = [];
+
+            // Function to to push api info to api list
+            getAPI('/apiKeys').then((newData) => {
+                apiList.push(newData.weatherbitKey);
+                apiList.push(newData.geoapiName);
+                apiList.push(newData.pixabayKey);
+            });
+
+            // Make only future dates possible on form
+            let today = new Date().toISOString().split('T')[0];
+            document.querySelector('#leaveDay').setAttribute('min', today);
+            document.querySelector('#returnDay').setAttribute('min', today);
+
+            document.querySelector('.create-button').addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelector('.new-trip-form').style.display = 'grid';
+                document.querySelector('#cityName').select();
+            })
+
+            document.querySelector('.new-trip-close').addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelector('.new-trip-form').reset();
+                document.querySelector('.new-trip-form').style.display = 'none';
+            })
+
+
+
+            let tripID = 0;
+            // Check that service workers are supported
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {             
+                    navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+                        // Registration was successful
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    }, function(error) {
+                        // registration failed :(
+                        console.log('ServiceWorker registration failed: ', error);
+                     });
+                }); 
+            };</script><script src="main.js"></script></body></html>
