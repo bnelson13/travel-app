@@ -23,7 +23,21 @@
             <input type="submit" id="submit" name="" value="SUBMIT" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
             
         </form>
-        <div id="trip-section"></div>
+        <div id="trip-section">
+            <!-- <div class="trip-div" id="trip-div-test">
+                <div class="trip-close">&#x2b;</div>
+                <div class="slide-show">
+                    <img src="https://pixabay.com/get/57e0d44a485aa814f6da8c7dda79367a163cd7e654546c4870267ed4974ec45fbf_1280.jpg" alt="" class="slide-pic" style="display: block;">
+                </div>
+                <div class="trip-info">
+                    <div class="city-title">My trip to: San Francisco, United States</div>
+                    <div class="trip-dates">Departing in: 10 days on 2020-07-31</div>
+                    <div class="trip-weather">Typical weather during that time is:</div>
+                    <div class="trip-weather-2">High of 73F & Low of 54F and Partly Cloudy</div>
+                </div>
+            </div> -->
+
+        </div>
 
         <script>
             let picPositionArray = [];
@@ -43,7 +57,7 @@
             let apiList = [];
 
             // Function to to push api info to api list
-            getAPI('/apiKeys').then((newData) => {
+            getAPI('http://localhost:3030/apiKeys').then((newData) => {
                 apiList.push(newData.weatherbitKey);
                 apiList.push(newData.geoapiName);
                 apiList.push(newData.pixabayKey);
@@ -65,8 +79,6 @@
                 document.querySelector('.new-trip-form').reset();
                 document.querySelector('.new-trip-form').style.display = 'none';
             })
-
-
 
             let tripID = 0;
             // Check that service workers are supported

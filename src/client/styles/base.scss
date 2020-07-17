@@ -37,6 +37,7 @@ body {
 
 .new-trip-form {
     position: absolute;
+    z-index: 2;
     margin-top: 50%;
     display: none;
     margin: 50px;
@@ -69,19 +70,51 @@ body {
     color: #FAF3DD;
 }
 
+.trip-close {
+    transform: rotate(45deg);
+    font-size: 30px;
+    position: absolute;
+    top: 10px;
+    display: none;
+    margin-left: 670px;
+    z-index: 2;
+    width: 31px;
+    cursor: pointer;
+}
+
+.trip-close:hover {
+    color: #FAF3DD;
+}
+
 .city-title {
     font-family: 'Lato', sans-serif;
     text-transform: uppercase;
-    font-size: 25px;
-    padding: 0 15px;
+    font-size: 20px;
+    padding: 15px 15px 0 15px;
     letter-spacing: .05em;
 }
 
 .trip-dates {
     font-family: 'Lato', sans-serif;
     text-transform: uppercase;
+    font-size: 16px;
+    padding: 20px 15px;
+    letter-spacing: .05em;
+}
+
+.trip-weather {
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    font-size: 16px;
+    padding: 0px 15px;
+    letter-spacing: .05em;
+}
+
+.trip-weather-2 {
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
     font-size: 14px;
-    padding: 5px 15px;
+    padding: 10px 20px;
     letter-spacing: .05em;
 }
 
@@ -90,6 +123,7 @@ body {
     object-fit: cover;
     width: 200px;
     display: none;
+    border-radius: 4px;
 }
 
 .slide-button {
@@ -153,6 +187,7 @@ body {
     width: 700px;
     background-color: #68B0AB;
     color: white;
+    position: relative;
     border-radius: 20px;
     display: grid;
     grid-template-columns: 200px 1fr;

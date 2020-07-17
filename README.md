@@ -12,7 +12,7 @@ npm install
 
 ## Usage
 
-You
+Youg
 
 ```bash
 npm run start
